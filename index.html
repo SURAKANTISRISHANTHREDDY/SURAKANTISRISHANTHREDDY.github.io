@@ -201,9 +201,10 @@
 
     function morphCursor(el) {
       const r = el.getBoundingClientRect();
-      cd.style.width = Math.min(30, Math.max(16, r.width - 18)) + 'px';
-      cd.style.height = Math.min(30, Math.max(16, r.height - 12)) + 'px';
-      cd.style.borderRadius = '999px';
+      const radius = getComputedStyle(el).borderRadius || '999px';
+      cd.style.width = Math.max(18, r.width - 6) + 'px';
+      cd.style.height = Math.max(18, r.height - 6) + 'px';
+      cd.style.borderRadius = radius;
       cr.style.opacity = '0';
     }
 
