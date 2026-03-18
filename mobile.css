@@ -41,6 +41,7 @@
         width: min(calc(100vw - 1.25rem), 24rem);
         max-width: 24rem;
         padding: 0.4rem 0.45rem;
+        justify-content: center;
         overflow-x: auto;
         overflow-y: hidden;
         -ms-overflow-style: none;
@@ -80,6 +81,7 @@
         flex: 0 0 auto;
         padding: 0.5rem 1rem;
         font-size: 0.8rem;
+        box-shadow: none;
     }
 
     .nav-icon-btn {
@@ -93,13 +95,20 @@
     }
 
     .nav-pill {
+        flex: 1;
+        justify-content: center;
         gap: 0.1rem;
         margin: 0 0 0 0.35rem;
+    }
+
+    .nav-pill li {
+        display: flex;
     }
 
     .nav-pill a {
         padding: 0.42rem 0.72rem;
         font-size: 0.72rem;
+        text-align: center;
     }
 
     .hero,
