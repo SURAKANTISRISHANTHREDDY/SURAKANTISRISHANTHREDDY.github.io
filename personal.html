@@ -249,10 +249,6 @@
       });
     });
 
-    // ── Scroll reveal ────────────────────────────────────────────────────
-    const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in'); }), { threshold: 0.07 });
-    document.querySelectorAll('.rev').forEach(el => obs.observe(el));
-
     // ── Horizontal scroll ────────────────────────────────────────────────
     const scrollContainer = document.querySelector('.h-scroll-container');
     const slides = Array.from(document.querySelectorAll('main > section, main > .about'));
@@ -323,6 +319,7 @@
       entries.forEach(entry => {
         const idx = slides.indexOf(entry.target);
         if (entry.isIntersecting && idx !== -1) {
+          entry.target.classList.add('in');
           entry.target.classList.add('slide-enter');
           setTimeout(() => entry.target.classList.remove('slide-enter'), 600);
           document.querySelectorAll('.slide-dot').forEach((d, i) => d.classList.toggle('active', i === idx));

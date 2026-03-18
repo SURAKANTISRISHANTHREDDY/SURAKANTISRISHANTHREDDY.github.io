@@ -280,6 +280,7 @@
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          entry.target.classList.add('in');
           const idx = slides.indexOf(entry.target);
           // Highlight Nav
           document.querySelectorAll('.nav-pill a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
