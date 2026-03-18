@@ -307,6 +307,17 @@
       if (s.id) observer.observe(s);
     });
 
+    // ── Primary nav click handling (make section anchors work in horizontal layout)
+    document.querySelectorAll('.nav-pill a, .nav-icon-btn').forEach(el => {
+      el.addEventListener('click', (evt) => {
+        const href = el.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        evt.preventDefault();
+        const target = document.getElementById(href.slice(1));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      });
+    });
+
     // 4. Contact Form Handling
     const form = document.getElementById('contactForm');
     form.onsubmit = (e) => {
