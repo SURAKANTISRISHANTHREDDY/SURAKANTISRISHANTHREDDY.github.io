@@ -1,10 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
     <clipPath id="circleClip">
-      <circle cx="32" cy="32" r="30" />
+      <circle cx="32" cy="32" r="21" />
     </clipPath>
   </defs>
-  <circle cx="32" cy="32" r="31" fill="#7b61ff" />
-  <image href="P.jpg" x="2" y="2" width="60" height="60" preserveAspectRatio="xMidYMid slice" clip-path="url(#circleClip)" />
-  <circle cx="32" cy="32" r="30" fill="none" stroke="rgba(26,24,20,0.22)" stroke-width="1.5" />
+  <circle cx="32" cy="32" r="30" fill="#f7f4ef" />
+  <circle cx="32" cy="32" r="29.25" fill="none" stroke="#1a1814" stroke-opacity="0.12" stroke-width="1.5" />
+  <image href="P.jpg" x="11" y="11" width="42" height="42" preserveAspectRatio="xMidYMid slice" clip-path="url(#circleClip)" />
+  <circle cx="32" cy="32" r="21" fill="none" stroke="#1a1814" stroke-opacity="0.16" stroke-width="1.1" />
 </svg>

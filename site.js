@@ -9,6 +9,50 @@
     return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
 
+  function initFaviconBadge() {
+    const image = new Image();
+    image.src = 'P.jpg';
+
+    image.addEventListener('load', () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 64;
+      canvas.height = 64;
+
+      const context = canvas.getContext('2d');
+      if (!context) return;
+
+      context.clearRect(0, 0, 64, 64);
+
+      context.fillStyle = '#f7f4ef';
+      context.beginPath();
+      context.arc(32, 32, 30, 0, Math.PI * 2);
+      context.fill();
+
+      context.save();
+      context.beginPath();
+      context.arc(32, 32, 28, 0, Math.PI * 2);
+      context.closePath();
+      context.clip();
+      context.drawImage(image, 4, 4, 56, 56);
+      context.restore();
+
+      context.strokeStyle = 'rgba(26, 24, 20, 0.16)';
+      context.lineWidth = 1.4;
+      context.beginPath();
+      context.arc(32, 32, 28, 0, Math.PI * 2);
+      context.stroke();
+
+      const faviconUrl = canvas.toDataURL('image/png');
+      document.querySelectorAll('link[rel="icon"]').forEach((link) => link.remove());
+
+      const favicon = document.createElement('link');
+      favicon.rel = 'icon';
+      favicon.type = 'image/png';
+      favicon.href = faviconUrl;
+      document.head.appendChild(favicon);
+    });
+  }
+
   function initCursor() {
     const cursorDot = document.getElementById('cd');
     if (!cursorDot) return { registerHover() {} };
@@ -402,7 +446,10 @@
   }
 
   window.PortfolioSite = {
+    initFaviconBadge,
     initScrollerPage,
     initStandalonePage,
   };
+
+  initFaviconBadge();
 })();
