@@ -143,10 +143,20 @@
     let scrollAnimFrame = null;
     let activeSectionId = null;
     let secNavAnimTimer = null;
+    let currentSlideIndex = 0;
+    let lastWheelNavigationAt = 0;
 
-    function animateScrollTo(left) {
+    function releaseScrollLock(delay = 0) {
+      clearTimeout(scrollLockTimer);
+      scrollLockTimer = setTimeout(() => {
+        isScrollLocked = false;
+      }, delay);
+    }
+
+    function animateScrollTo(left, onComplete) {
       if (!isDesktopLayout()) {
         scrollContainer.scrollLeft = left;
+        if (onComplete) onComplete();
         return;
       }
 
@@ -173,6 +183,7 @@
 
         scrollContainer.style.scrollSnapType = previousSnap;
         scrollAnimFrame = null;
+        if (onComplete) onComplete();
       }
 
       scrollAnimFrame = requestAnimationFrame(step);
@@ -187,25 +198,30 @@
       const boundedIndex = Math.max(0, Math.min(slides.length - 1, index));
       const target = slides[boundedIndex];
 
-      if (!target || target === slides[getCurrentIndex()]) return;
+      if (!target || boundedIndex === currentSlideIndex) return false;
+      currentSlideIndex = boundedIndex;
 
       if (isDesktopLayout()) {
         animateScrollTo(target.offsetLeft);
-        return;
+        return true;
       }
 
       target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      return true;
     }
 
     function handleDirectionalScroll(direction) {
       if (isScrollLocked) return;
 
       isScrollLocked = true;
-      goToSlide(getCurrentIndex() + direction);
-      clearTimeout(scrollLockTimer);
-      scrollLockTimer = setTimeout(() => {
-        isScrollLocked = false;
-      }, 500);
+      const didMove = goToSlide(currentSlideIndex + direction);
+
+      if (!didMove) {
+        releaseScrollLock(120);
+        return;
+      }
+
+      releaseScrollLock(isDesktopLayout() ? 650 : 450);
     }
 
     function updateSlidingBackground() {
@@ -268,6 +284,7 @@
     function updateActiveState(section) {
       const isHome = section.id === 'home';
       const activeIndex = slides.indexOf(section);
+      if (activeIndex !== -1) currentSlideIndex = activeIndex;
 
       section.classList.add('in');
 
@@ -290,8 +307,14 @@
         const verticalDelta = Math.abs(event.deltaY);
         const horizontalDelta = Math.abs(event.deltaX);
         const dominantDelta = verticalDelta >= horizontalDelta ? event.deltaY : event.deltaX;
+        const now = performance.now();
 
         event.preventDefault();
+
+        if (Math.abs(dominantDelta) < 10) return;
+        if (isDesktopLayout() && now - lastWheelNavigationAt < 900) return;
+
+        lastWheelNavigationAt = now;
         handleDirectionalScroll(dominantDelta > 0 ? 1 : -1);
       },
       { passive: false }
@@ -364,6 +387,7 @@
     window.addEventListener('resize', updateSlidingBackground);
 
     if (slides[0]?.id === 'home') {
+      currentSlideIndex = 0;
       navLinks.forEach((link) => link.classList.remove('active'));
       updateSlidingBackground();
       updateSecondaryNav('home');
