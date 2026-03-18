@@ -194,15 +194,6 @@
         margin-bottom: 1.15rem;
     }
 
-    .h-pills {
-        gap: 0.55rem;
-    }
-
-    .h-pill {
-        font-size: 0.76rem;
-        padding: 0.55rem 0.85rem;
-    }
-
     .hero-card {
         width: 100%;
         padding: 1.35rem;
@@ -325,8 +316,7 @@
         cursor: auto;
     }
 
-    .cur-dot,
-    .cur-ring {
+    .cur-dot {
         display: none;
     }
 }

@@ -100,25 +100,8 @@ label {
     backface-visibility: hidden;
 }
 
-.cur-ring {
-    display: none;
-    width: 0;
-    height: 0;
-    background: transparent;
-    border-radius: 99px;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: none;
-}
-
 body.hov .cur-dot {
     background: rgba(26, 24, 20, 0.14);
-}
-
-body.hov .cur-ring {
-    opacity: 0;
 }
 
 /* ---- NAV --------------------------------- */
@@ -138,8 +121,7 @@ nav {
     width: min(560px, calc(100vw - 3rem));
 }
 
-.nav-icon-btn,
-.nav-logo {
+.nav-icon-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -155,8 +137,7 @@ nav {
     flex-shrink: 0;
 }
 
-.nav-icon-btn:hover,
-.nav-logo:hover {
+.nav-icon-btn:hover {
     color: #111;
     background: rgba(0, 0, 0, 0.06);
     transform: scale(1.08);
@@ -268,28 +249,6 @@ nav {
     justify-content: center;
 }
 
-
-/* Tag line above hero heading */
-.h-tag {
-    font-size: .72rem;
-    letter-spacing: .1em;
-    color: var(--ink3);
-    display: flex;
-    align-items: center;
-    gap: .8rem;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fu .8s .15s forwards;
-}
-
-.h-tag::before {
-    content: '';
-    width: 28px;
-    height: 1px;
-    background: var(--ink3);
-    flex-shrink: 0;
-}
-
 .h-title {
     font-family: var(--serif);
     font-size: clamp(2.6rem, 5vw, 5rem);
@@ -327,43 +286,6 @@ nav {
 
 .h-body a:hover {
     text-decoration-color: var(--accent);
-}
-
-.h-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .7rem;
-    opacity: 0;
-    animation: fu .9s .6s forwards;
-}
-
-.h-pill {
-    display: flex;
-    align-items: center;
-    gap: .45rem;
-    font-size: .75rem;
-    color: var(--ink2);
-    padding: .45rem 1.1rem;
-    border-radius: 99px;
-    background: var(--bg2);
-    border: 1px solid transparent;
-    text-decoration: none;
-    transition: all .25s;
-}
-
-.h-pill:hover {
-    background: var(--ink);
-    color: var(--bg);
-}
-
-.h-pill:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-    border-radius: 99px;
-}
-
-.h-pill svg {
-    flex-shrink: 0;
 }
 
 /* ---- HERO CARD --------------------------- */
@@ -951,30 +873,17 @@ nav {
     outline-offset: 2px;
 }
 
-/* Separators not needed — each link is its own pill */
-.sec-nav-sep {
-    display: none;
-}
-
-/* Label hidden — primary nav has no text prefix */
-.sec-nav-label {
-    display: none;
-}
-
-
 /* ---- REDUCED MOTION ---------------------- */
 @media (prefers-reduced-motion: reduce) {
 
     .sec-nav,
     .nav-pill::before,
-    .h-pill,
     .pill,
     .cbtn,
     .sec-nav-link,
     .nav-pill a,
     .proj,
-    .cur-dot,
-    .cur-ring {
+    .cur-dot {
         transition: none !important;
         animation: none !important;
     }
@@ -985,8 +894,6 @@ nav {
 
     .h-title,
     .h-body,
-    .h-pills,
-    .h-tag,
     .hero-card {
         opacity: 1 !important;
         animation: none !important;

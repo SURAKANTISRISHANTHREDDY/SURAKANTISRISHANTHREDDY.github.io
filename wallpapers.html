@@ -9,8 +9,6 @@
 </head>
 <body>
   <div class="cur-dot" id="cd"></div>
-  <div class="cur-ring" id="cr"></div>
-
   <nav>
     <a class="nav-icon-btn pill" href="personal.html" style="padding: 0; border-radius: 50%; overflow: hidden;">
       <img src="P.jpg" alt="Srishanth" class="nav-photo" />
@@ -55,60 +53,9 @@
     </ul>
   </footer>
 
+  <script src="site.js"></script>
   <script>
-    const cd = document.getElementById('cd');
-    let mx = 0, my = 0, dx = 0, dy = 0;
-    let hoverPill = null;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-
-    function morphCursor(el) {
-      const rect = el.getBoundingClientRect();
-      const isNavItem = !!el.closest('.nav-pill');
-      const radius = isNavItem ? '999px' : (getComputedStyle(el).borderRadius || '999px');
-      const insetX = isNavItem ? 4 : 6;
-      const insetY = isNavItem ? 4 : 6;
-      cd.style.width = Math.max(18, rect.width - insetX) + 'px';
-      cd.style.height = Math.max(18, rect.height - insetY) + 'px';
-      cd.style.borderRadius = radius;
-    }
-
-    function resetCursor() {
-      cd.style.width = '12px';
-      cd.style.height = '12px';
-      cd.style.borderRadius = '999px';
-    }
-
-    (function loop() {
-      let tx = mx, ty = my;
-      if (hoverPill) {
-        const rect = hoverPill.getBoundingClientRect();
-        tx = rect.left + rect.width / 2;
-        ty = rect.top + rect.height / 2;
-      }
-      dx += (tx - dx) * .14; dy += (ty - dy) * .14;
-      cd.style.transform = `translate3d(${dx}px, ${dy}px, 0) translate3d(-50%, -50%, 0)`;
-      requestAnimationFrame(loop);
-    })();
-    document.querySelectorAll('a, button, .pill').forEach(el => {
-      const isPill = el.classList.contains('pill') || el.classList.contains('h-pill') || el.closest('.nav-pill') || el.classList.contains('cbtn');
-      el.addEventListener('mouseenter', () => {
-        document.body.classList.add('hov');
-        if (isPill) {
-          hoverPill = el;
-          morphCursor(el);
-        }
-      });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('hov');
-        if (isPill) {
-          hoverPill = null;
-          resetCursor();
-        }
-      });
-    });
-    document.querySelectorAll('.rev').forEach(el => el.classList.add('in'));
-    const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in'); }), { threshold: 0.07 });
-    document.querySelectorAll('.rev').forEach(el => obs.observe(el));
+    PortfolioSite.initStandalonePage();
   </script>
 </body>
 </html>
