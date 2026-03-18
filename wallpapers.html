@@ -57,17 +57,35 @@
 
   <script>
     const cd = document.getElementById('cd'), cr = document.getElementById('cr');
-    let mx = 0, my = 0, rx = 0, ry = 0;
+    let mx = 0, my = 0, dx = 0, dy = 0, rx = 0, ry = 0;
     let hoverPill = null;
     document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+    function morphCursor(el) {
+      const rect = el.getBoundingClientRect();
+      cd.style.width = Math.min(30, Math.max(16, rect.width - 18)) + 'px';
+      cd.style.height = Math.min(30, Math.max(16, rect.height - 12)) + 'px';
+      cd.style.borderRadius = '999px';
+      cr.style.opacity = '0';
+    }
+
+    function resetCursor() {
+      cd.style.width = '12px';
+      cd.style.height = '12px';
+      cd.style.borderRadius = '999px';
+      cr.style.opacity = '';
+    }
+
     (function loop() {
-      cd.style.left = mx + 'px'; cd.style.top = my + 'px';
       let tx = mx, ty = my;
       if (hoverPill) {
         const rect = hoverPill.getBoundingClientRect();
         tx = rect.left + rect.width / 2;
         ty = rect.top + rect.height / 2;
       }
+      dx += (tx - dx) * .22; dy += (ty - dy) * .22;
+      cd.style.left = dx + 'px';
+      cd.style.top = dy + 'px';
       rx += (tx - rx) * .15; ry += (ty - ry) * .15;
       cr.style.left = rx + 'px'; cr.style.top = ry + 'px';
       requestAnimationFrame(loop);
@@ -78,19 +96,14 @@
         document.body.classList.add('hov');
         if (isPill) {
           hoverPill = el;
-          const rect = el.getBoundingClientRect();
-          cr.style.width = rect.width + 'px';
-          cr.style.height = rect.height + 'px';
-          cd.style.opacity = '0';
+          morphCursor(el);
         }
       });
       el.addEventListener('mouseleave', () => {
         document.body.classList.remove('hov');
         if (isPill) {
           hoverPill = null;
-          cr.style.width = '';
-          cr.style.height = '';
-          cd.style.opacity = '1';
+          resetCursor();
         }
       });
     });

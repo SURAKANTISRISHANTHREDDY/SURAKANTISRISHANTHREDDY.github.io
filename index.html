@@ -30,7 +30,7 @@
     </a>
     <ul class="nav-pill">
       <!-- EDIT: Nav Items -->
-      <li><a href="#work" class="active">Work</a></li>
+      <li><a href="#work">Work</a></li>
       <li><a href="#wallpapers">Wallpapers</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -165,9 +165,6 @@
     const SEC_NAV_DATA = {
       home: {
         links: [
-          { text: 'GitHub', href: 'https://github.com/SURAKANTISRISHANTHREDDY', target: '_blank', icon: '🔗 ' },
-          { text: 'LinkedIn', href: 'https://linkedin.com/in/your-profile', target: '_blank', icon: '💼 ' },
-          { text: 'Email', href: 'mailto:srishanthsurakanti@gmail.com', icon: '✉️ ' },
         ]
       },
       work: {
@@ -188,7 +185,9 @@
       },
       contact: {
         links: [
-          { text: 'Direct Email', href: 'mailto:srishanthsurakanti@gmail.com', icon: '✉️ ' }
+          { text: 'Direct Email', href: 'mailto:srishanthsurakanti@gmail.com', icon: '✉️ ' },
+          { text: 'GitHub', href: 'https://github.com/SURAKANTISRISHANTHREDDY', target: '_blank', icon: '🔗 ' },
+          { text: 'LinkedIn', href: 'https://linkedin.com/in/your-profile', target: '_blank', icon: '💼 ' }
         ]
       },
     };
@@ -197,13 +196,30 @@
     
     // 1. Cursor Handling
     const cd = document.getElementById('cd'), cr = document.getElementById('cr');
-    let mx = 0, my = 0, rx = 0, ry = 0, hoverPill = null;
+    let mx = 0, my = 0, dx = 0, dy = 0, rx = 0, ry = 0, hoverPill = null;
     document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+    function morphCursor(el) {
+      const r = el.getBoundingClientRect();
+      cd.style.width = Math.min(30, Math.max(16, r.width - 18)) + 'px';
+      cd.style.height = Math.min(30, Math.max(16, r.height - 12)) + 'px';
+      cd.style.borderRadius = '999px';
+      cr.style.opacity = '0';
+    }
+
+    function resetCursor() {
+      cd.style.width = '12px';
+      cd.style.height = '12px';
+      cd.style.borderRadius = '999px';
+      cr.style.opacity = '';
+    }
     
     (function cursorLoop() {
-      cd.style.left = mx + 'px'; cd.style.top = my + 'px';
       let tx = mx, ty = my;
       if (hoverPill) { const r = hoverPill.getBoundingClientRect(); tx = r.left + r.width / 2; ty = r.top + r.height / 2; }
+      dx += (tx - dx) * .22; dy += (ty - dy) * .22;
+      cd.style.left = dx + 'px';
+      cd.style.top = dy + 'px';
       rx += (tx - rx) * .15; ry += (ty - ry) * .15;
       cr.style.left = rx + 'px'; cr.style.top = ry + 'px';
       requestAnimationFrame(cursorLoop);
@@ -214,11 +230,11 @@
         const isPill = el.classList.contains('pill') || el.classList.contains('h-pill') || el.closest('.nav-pill') || el.classList.contains('cbtn') || el.classList.contains('sec-nav-link');
         el.addEventListener('mouseenter', () => {
           document.body.classList.add('hov');
-          if (isPill) { hoverPill = el; const r = el.getBoundingClientRect(); cr.style.width = r.width + 'px'; cr.style.height = r.height + 'px'; cd.style.opacity = '0'; }
+          if (isPill) { hoverPill = el; morphCursor(el); }
         });
         el.addEventListener('mouseleave', () => {
           document.body.classList.remove('hov');
-          if (isPill) { hoverPill = null; cr.style.width = ''; cr.style.height = ''; cd.style.opacity = '1'; }
+          if (isPill) { hoverPill = null; resetCursor(); }
         });
       });
     }
@@ -229,12 +245,22 @@
     const slides = Array.from(document.querySelectorAll('main > section, main > .about'));
     let isLocked = false;
 
+    function getCurrentIndex() {
+      const width = scrollContainer.clientWidth;
+      return Math.round(scrollContainer.scrollLeft / width);
+    }
+
+    function transitionToSlide(targetIndex) {
+      const boundedIndex = Math.max(0, Math.min(slides.length - 1, targetIndex));
+      const target = slides[boundedIndex];
+      if (!target || target === slides[getCurrentIndex()]) return;
+      target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    }
+
     function handleScroll(dir) {
       if (isLocked) return;
       isLocked = true;
-      const index = Math.round(scrollContainer.scrollLeft / scrollContainer.clientWidth) + dir;
-      const target = slides[Math.max(0, Math.min(slides.length - 1, index))];
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      transitionToSlide(getCurrentIndex() + dir);
       setTimeout(() => { isLocked = false; }, 750);
     }
 
@@ -249,13 +275,22 @@
     const dotsContainer = document.getElementById('slideDots');
     const secNav = document.getElementById('secNav');
     let activeSec = null;
+    let secNavAnimTimer = null;
+
+    function animateSecNavIn() {
+      secNav.classList.remove('reveal');
+      void secNav.offsetWidth;
+      secNav.classList.add('reveal');
+      clearTimeout(secNavAnimTimer);
+      secNavAnimTimer = setTimeout(() => secNav.classList.remove('reveal'), 450);
+    }
 
     function updateSecNav(id) {
       if (activeSec === id) return;
       activeSec = id;
       secNav.innerHTML = '';
       const data = SEC_NAV_DATA[id];
-      if (!data) { secNav.classList.remove('visible'); return; }
+      if (!data) { secNav.classList.remove('visible', 'reveal'); return; }
       
       data.links.forEach(item => {
         const a = document.createElement('a');
@@ -268,6 +303,7 @@
       });
       watchHover(secNav.querySelectorAll('.sec-nav-link'));
       secNav.classList.add('visible');
+      animateSecNavIn();
     }
 
     const observer = new IntersectionObserver(entries => {
@@ -275,8 +311,11 @@
         if (entry.isIntersecting) {
           entry.target.classList.add('in');
           const idx = slides.indexOf(entry.target);
+          const isHome = entry.target.id === 'home';
           // Highlight Nav
-          document.querySelectorAll('.nav-pill a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
+          document.querySelectorAll('.nav-pill a').forEach(a => {
+            a.classList.toggle('active', !isHome && a.getAttribute('href') === '#' + entry.target.id);
+          });
           // Highlight Dots
           document.querySelectorAll('.slide-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
           // Update Secondary Nav
@@ -288,6 +327,8 @@
             navPill.style.setProperty('--active-left', (r.left - p.left) + 'px');
             navPill.style.setProperty('--active-width', r.width + 'px');
             navPill.classList.add('has-active');
+          } else {
+            navPill.classList.remove('has-active');
           }
         }
       });
@@ -296,10 +337,15 @@
     slides.forEach((s, i) => {
       const dot = document.createElement('div');
       dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
-      dot.onclick = () => s.scrollIntoView({ behavior: 'smooth' });
+      dot.onclick = () => transitionToSlide(i);
       dotsContainer.appendChild(dot);
       if (s.id) observer.observe(s);
     });
+
+    if (slides[0]?.id === 'home') {
+      document.querySelectorAll('.nav-pill a').forEach(a => a.classList.remove('active'));
+      navPill.classList.remove('has-active');
+    }
 
     // ── Primary nav click handling (make section anchors work in horizontal layout)
     document.querySelectorAll('.nav-pill a, .nav-icon-btn').forEach(el => {
@@ -308,7 +354,8 @@
         if (!href || !href.startsWith('#')) return;
         evt.preventDefault();
         const target = document.getElementById(href.slice(1));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        const targetIndex = slides.indexOf(target);
+        if (targetIndex !== -1) transitionToSlide(targetIndex);
       });
     });
 

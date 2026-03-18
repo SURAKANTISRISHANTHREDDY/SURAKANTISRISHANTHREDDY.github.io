@@ -84,39 +84,37 @@ label {
 
 /* ---- CUSTOM CURSOR ----------------------- */
 .cur-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--ink);
+    width: 12px;
+    height: 12px;
+    background: rgba(26, 24, 20, 0.96);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: width .2s, height .2s, background .2s, opacity .2s;
+    transition: width .22s cubic-bezier(0.22, 1, 0.36, 1), height .22s cubic-bezier(0.22, 1, 0.36, 1), border-radius .22s cubic-bezier(0.22, 1, 0.36, 1), background .18s ease, opacity .18s ease;
+    box-shadow: 0 5px 12px rgba(26, 24, 20, 0.08);
 }
 
 .cur-ring {
-    width: 36px;
-    height: 36px;
-    border: 1px solid rgba(26, 24, 20, .35);
+    display: none;
+    width: 0;
+    height: 0;
+    background: transparent;
     border-radius: 99px;
     position: fixed;
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
-    transition: width .3s, height .3s, border-color .3s;
+    transition: none;
 }
 
 body.hov .cur-dot {
-    width: 12px;
-    height: 12px;
-    background: var(--accent);
+    background: rgba(26, 24, 20, 0.14);
 }
 
 body.hov .cur-ring {
-    width: 50px;
-    height: 50px;
-    border-color: rgba(200, 80, 42, .4);
+    opacity: 0;
 }
 
 /* ---- NAV --------------------------------- */
@@ -133,6 +131,7 @@ nav {
     border-radius: 9999px;
     border: 1px solid rgba(0, 0, 0, 0.06);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
+    width: min(560px, calc(100vw - 3rem));
 }
 
 .nav-icon-btn,
@@ -168,9 +167,11 @@ nav {
 
 /* Separate individual pill nav links */
 .nav-pill {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: center;
-    gap: 0.2rem;
+    flex: 1;
+    gap: 0;
     list-style: none;
     margin: 0 0.4rem;
     position: relative;
@@ -203,12 +204,16 @@ nav {
     padding: 0;
     position: relative;
     z-index: 1;
+    display: flex;
+    min-width: 0;
 }
 
 .nav-pill a {
     display: inline-flex;
     align-items: center;
-    padding: 0.45rem 1rem;
+    justify-content: center;
+    width: 100%;
+    padding: 0.45rem 0.4rem;
     border-radius: 9999px;
     background: transparent;
     border: none;
@@ -790,42 +795,12 @@ nav {
 /* ---- SLIDE TRANSITIONS ------------------- */
 .h-scroll-container>section,
 .h-scroll-container>div.about {
-    transition: opacity .45s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.h-scroll-container>section.slide-exit,
-.h-scroll-container>div.about.slide-exit {
-    opacity: 0;
-}
-
-.h-scroll-container>section.slide-enter,
-.h-scroll-container>div.about.slide-enter {
-    opacity: 0;
-    animation: slideIn .55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-
-    to {
-        opacity: 1;
-        transform: none;
-    }
+    transition: none;
 }
 
 /* Progress dots indicator */
 .slide-dots {
-    position: fixed;
-    right: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: .55rem;
-    z-index: 9989;
+    display: none;
 }
 
 .slide-dot {
@@ -885,10 +860,13 @@ nav {
     position: fixed;
     bottom: calc(1.8rem + 56px + 0.55rem);
     left: 50%;
-    transform: translateX(-50%) translateY(12px);
+    width: max-content;
+    max-width: calc(100vw - 3rem);
+    transform: translateX(-50%) translateY(18px) scale(0.96);
     z-index: 9985;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     /* space between individual pills */
     padding: 0;
@@ -906,8 +884,24 @@ nav {
 
 .sec-nav.visible {
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0) scale(1);
     pointer-events: all;
+}
+
+.sec-nav.reveal {
+    animation: secNavLift .58s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes secNavLift {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px) scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
 }
 
 /* Each link is its own standalone pill */
@@ -993,4 +987,3 @@ nav {
         animation: none !important;
     }
 }
-

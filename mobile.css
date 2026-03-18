@@ -58,7 +58,7 @@
         left: 50%;
         width: min(calc(100vw - 1.25rem), 24rem);
         max-width: 24rem;
-        transform: translateX(-50%) translateY(0);
+        transform: translateX(-50%) translateY(14px) scale(0.97);
         justify-content: center;
         gap: 0.3rem;
         overflow-x: auto;
@@ -74,7 +74,23 @@
     }
 
     .sec-nav.visible {
-        transform: translateX(-50%) translateY(0);
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    .sec-nav.reveal {
+        animation: secNavLiftMobile 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes secNavLiftMobile {
+        from {
+            opacity: 0;
+            transform: translateX(-50%) translateY(18px) scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
     }
 
     .sec-nav-link {

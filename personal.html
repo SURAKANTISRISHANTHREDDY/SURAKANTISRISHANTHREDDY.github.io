@@ -29,7 +29,7 @@
       <img src="P.jpg" alt="Srishanth" class="nav-photo" />
     </a>
     <ul class="nav-pill">
-      <li><a href="#work" class="active">Work</a></li>
+      <li><a href="#work">Work</a></li>
       <li><a href="#wallpapers">Wallpapers</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -197,12 +197,30 @@
   <script>
     // ── Cursor ──────────────────────────────────────────────────────────
     const cd = document.getElementById('cd'), cr = document.getElementById('cr');
-    let mx = 0, my = 0, rx = 0, ry = 0, hoverPill = null;
+    let mx = 0, my = 0, dx = 0, dy = 0, rx = 0, ry = 0, hoverPill = null;
     document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+    function morphCursor(el) {
+      const r = el.getBoundingClientRect();
+      cd.style.width = Math.min(30, Math.max(16, r.width - 18)) + 'px';
+      cd.style.height = Math.min(30, Math.max(16, r.height - 12)) + 'px';
+      cd.style.borderRadius = '999px';
+      cr.style.opacity = '0';
+    }
+
+    function resetCursor() {
+      cd.style.width = '12px';
+      cd.style.height = '12px';
+      cd.style.borderRadius = '999px';
+      cr.style.opacity = '';
+    }
+
     (function loop() {
-      cd.style.left = mx + 'px'; cd.style.top = my + 'px';
       let tx = mx, ty = my;
       if (hoverPill) { const r = hoverPill.getBoundingClientRect(); tx = r.left + r.width / 2; ty = r.top + r.height / 2; }
+      dx += (tx - dx) * .22; dy += (ty - dy) * .22;
+      cd.style.left = dx + 'px';
+      cd.style.top = dy + 'px';
       rx += (tx - rx) * .15; ry += (ty - ry) * .15;
       cr.style.left = rx + 'px'; cr.style.top = ry + 'px';
       requestAnimationFrame(loop);
@@ -211,11 +229,11 @@
       const isPill = el.classList.contains('pill') || el.classList.contains('h-pill') || el.closest('.nav-pill') || el.classList.contains('cbtn');
       el.addEventListener('mouseenter', () => {
         document.body.classList.add('hov');
-        if (isPill) { hoverPill = el; const r = el.getBoundingClientRect(); cr.style.width = r.width + 'px'; cr.style.height = r.height + 'px'; cd.style.opacity = '0'; }
+        if (isPill) { hoverPill = el; morphCursor(el); }
       });
       el.addEventListener('mouseleave', () => {
         document.body.classList.remove('hov');
-        if (isPill) { hoverPill = null; cr.style.width = ''; cr.style.height = ''; cd.style.opacity = '1'; }
+        if (isPill) { hoverPill = null; resetCursor(); }
       });
     });
 
@@ -233,6 +251,7 @@
     function goToSlide(index) {
       const target = slides[Math.max(0, Math.min(slides.length - 1, index))];
       if (!target) return;
+      if (slides[getCurrentIndex()] === target) return;
       target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
     }
 
@@ -284,14 +303,12 @@
       dotsContainer.appendChild(dot);
     });
 
-    // ── Slide transition + dot update ────────────────────────────────────
+    // ── Dot update ───────────────────────────────────────────────────────
     const slideObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         const idx = slides.indexOf(entry.target);
         if (entry.isIntersecting && idx !== -1) {
           entry.target.classList.add('in');
-          entry.target.classList.add('slide-enter');
-          setTimeout(() => entry.target.classList.remove('slide-enter'), 600);
           document.querySelectorAll('.slide-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
         }
       });
@@ -308,18 +325,29 @@
         const lr = activeLink.getBoundingClientRect(), cr2 = navPillContainer.getBoundingClientRect();
         navPillContainer.style.setProperty('--active-left', (lr.left - cr2.left) + 'px');
         navPillContainer.style.setProperty('--active-width', lr.width + 'px');
-      } else { navPillContainer.classList.remove('has-active'); }
+      } else {
+        navPillContainer.classList.remove('has-active');
+      }
     }
     const navObserver = new IntersectionObserver(entries => {
-      let changed = false;
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          navLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href') === '#' + entry.target.id) { link.classList.add('active'); changed = true; } });
+          const isHome = entry.target.id === 'home';
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (!isHome && link.getAttribute('href') === '#' + entry.target.id) {
+              link.classList.add('active');
+            }
+          });
+          updateSlidingBackground();
         }
       });
-      if (changed) updateSlidingBackground();
     }, { root: scrollContainer, threshold: 0.5 });
     slides.forEach(s => { if (s.id) navObserver.observe(s); });
+    if (slides[0]?.id === 'home') {
+      navLinks.forEach(link => link.classList.remove('active'));
+      updateSlidingBackground();
+    }
     window.addEventListener('resize', updateSlidingBackground);
     setTimeout(updateSlidingBackground, 50);
 
@@ -345,12 +373,6 @@
       home: {
         label: 'Find me on',
         links: [
-          { text: 'GitHub',   href: 'https://github.com/SURAKANTISRISHANTHREDDY', target: '_blank',
-            icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.8 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.7 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.5-2.8 5.5-5.5 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>` },
-          { text: 'LinkedIn', href: 'https://linkedin.com/in/your-profile', target: '_blank',
-            icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.55V9H7.11v11.45z"/></svg>` },
-          { text: 'Email',    href: 'mailto:srishanthsurakanti@gmail.com',
-            icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>` },
         ]
       },
       work: {
@@ -394,6 +416,7 @@
 
     const secNav = document.getElementById('secNav');
     let currentSecSection = null;
+    let secNavAnimTimer = null;
 
     function buildSecNav(sectionId) {
       const data = SEC_NAV_DATA[sectionId];
@@ -452,13 +475,20 @@
       // Tiny delay so the DOM paints before animating in
       requestAnimationFrame(() => requestAnimationFrame(() => {
         secNav.classList.toggle('visible', !!SEC_NAV_DATA[sectionId]);
+        secNav.classList.remove('reveal');
+        if (SEC_NAV_DATA[sectionId]) {
+          void secNav.offsetWidth;
+          secNav.classList.add('reveal');
+          clearTimeout(secNavAnimTimer);
+          secNavAnimTimer = setTimeout(() => secNav.classList.remove('reveal'), 450);
+        }
       }));
     }
 
     // Keyboard: Escape dismisses secondary nav
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        secNav.classList.remove('visible');
+        secNav.classList.remove('visible', 'reveal');
         currentSecSection = null;
       }
       // Arrow keys navigate between sec-nav links when focused inside
