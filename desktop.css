@@ -127,10 +127,10 @@ nav {
     display: flex;
     align-items: center;
     padding: 0.4rem 0.5rem;
-    background: #f2f2f7;
+    background: #ebe7df;
     border-radius: 9999px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(26, 24, 20, 0.12);
+    box-shadow: 0 12px 28px rgba(26, 24, 20, 0.12), 0 2px 8px rgba(26, 24, 20, 0.08);
     width: min(560px, calc(100vw - 3rem));
 }
 
@@ -183,7 +183,7 @@ nav {
     top: 50%;
     transform: translateY(-50%);
     height: calc(100% - 4px);
-    background: rgba(0, 0, 0, 0.07);
+    background: rgba(26, 24, 20, 0.12);
     border-radius: 9999px;
     border: none;
     box-shadow: none;
@@ -911,9 +911,9 @@ nav {
     gap: 0.4rem;
     padding: 0.45rem 1.1rem;
     border-radius: 9999px;
-    background: #f2f2f7;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
+    background: #ebe7df;
+    border: 1px solid rgba(26, 24, 20, 0.12);
+    box-shadow: 0 12px 28px rgba(26, 24, 20, 0.12), 0 2px 8px rgba(26, 24, 20, 0.08);
     color: #555;
     text-decoration: none;
     font-family: var(--sans);
@@ -932,9 +932,8 @@ nav {
 
 .sec-nav-link:hover {
     color: #111;
-    background: #eae7e1;
-    /* slightly darker on hover */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.13), 0 1px 4px rgba(0, 0, 0, 0.08);
+    background: #e1dbd1;
+    box-shadow: 0 14px 30px rgba(26, 24, 20, 0.14), 0 3px 10px rgba(26, 24, 20, 0.10);
 }
 
 .sec-nav-link:hover svg {

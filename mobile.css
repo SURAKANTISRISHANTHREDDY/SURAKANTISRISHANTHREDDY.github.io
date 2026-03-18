@@ -42,6 +42,9 @@
         max-width: 24rem;
         padding: 0.4rem 0.45rem;
         justify-content: flex-start;
+        background: #ebe7df;
+        border: 1px solid rgba(26, 24, 20, 0.12);
+        box-shadow: 0 12px 28px rgba(26, 24, 20, 0.12), 0 2px 8px rgba(26, 24, 20, 0.08);
         overflow-x: auto;
         overflow-y: hidden;
         -ms-overflow-style: none;
@@ -97,8 +100,9 @@
         flex: 0 0 auto;
         padding: 0.46rem 0.92rem;
         font-size: 0.78rem;
-        box-shadow: none;
-        border-color: rgba(0, 0, 0, 0.04);
+        background: #ebe7df;
+        border-color: rgba(26, 24, 20, 0.12);
+        box-shadow: 0 12px 28px rgba(26, 24, 20, 0.12), 0 2px 8px rgba(26, 24, 20, 0.08);
     }
 
     .nav-icon-btn {
