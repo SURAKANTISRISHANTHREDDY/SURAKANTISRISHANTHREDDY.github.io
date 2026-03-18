@@ -89,11 +89,15 @@ label {
     background: rgba(26, 24, 20, 0.96);
     border-radius: 50%;
     position: fixed;
+    left: 0;
+    top: 0;
     pointer-events: none;
     z-index: 9999;
-    transform: translate(-50%, -50%);
+    transform: translate3d(-9999px, -9999px, 0) translate3d(-50%, -50%, 0);
     transition: width .22s cubic-bezier(0.22, 1, 0.36, 1), height .22s cubic-bezier(0.22, 1, 0.36, 1), border-radius .22s cubic-bezier(0.22, 1, 0.36, 1), background .18s ease, opacity .18s ease;
     box-shadow: 0 5px 12px rgba(26, 24, 20, 0.08);
+    will-change: transform, width, height, border-radius;
+    backface-visibility: hidden;
 }
 
 .cur-ring {

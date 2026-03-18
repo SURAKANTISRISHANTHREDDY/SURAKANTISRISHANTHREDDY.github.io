@@ -56,25 +56,26 @@
   </footer>
 
   <script>
-    const cd = document.getElementById('cd'), cr = document.getElementById('cr');
-    let mx = 0, my = 0, dx = 0, dy = 0, rx = 0, ry = 0;
+    const cd = document.getElementById('cd');
+    let mx = 0, my = 0, dx = 0, dy = 0;
     let hoverPill = null;
     document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 
     function morphCursor(el) {
       const rect = el.getBoundingClientRect();
-      const radius = getComputedStyle(el).borderRadius || '999px';
-      cd.style.width = Math.max(18, rect.width - 6) + 'px';
-      cd.style.height = Math.max(18, rect.height - 6) + 'px';
+      const isNavItem = !!el.closest('.nav-pill');
+      const radius = isNavItem ? '999px' : (getComputedStyle(el).borderRadius || '999px');
+      const insetX = isNavItem ? 4 : 6;
+      const insetY = isNavItem ? 4 : 6;
+      cd.style.width = Math.max(18, rect.width - insetX) + 'px';
+      cd.style.height = Math.max(18, rect.height - insetY) + 'px';
       cd.style.borderRadius = radius;
-      cr.style.opacity = '0';
     }
 
     function resetCursor() {
       cd.style.width = '12px';
       cd.style.height = '12px';
       cd.style.borderRadius = '999px';
-      cr.style.opacity = '';
     }
 
     (function loop() {
@@ -84,11 +85,8 @@
         tx = rect.left + rect.width / 2;
         ty = rect.top + rect.height / 2;
       }
-      dx += (tx - dx) * .22; dy += (ty - dy) * .22;
-      cd.style.left = dx + 'px';
-      cd.style.top = dy + 'px';
-      rx += (tx - rx) * .15; ry += (ty - ry) * .15;
-      cr.style.left = rx + 'px'; cr.style.top = ry + 'px';
+      dx += (tx - dx) * .14; dy += (ty - dy) * .14;
+      cd.style.transform = `translate3d(${dx}px, ${dy}px, 0) translate3d(-50%, -50%, 0)`;
       requestAnimationFrame(loop);
     })();
     document.querySelectorAll('a, button, .pill').forEach(el => {

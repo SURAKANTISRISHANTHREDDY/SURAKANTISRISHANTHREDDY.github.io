@@ -195,34 +195,32 @@
     // ── SYSTEM: CORE FUNCTIONALITY ─────────────────────────────────────
     
     // 1. Cursor Handling
-    const cd = document.getElementById('cd'), cr = document.getElementById('cr');
-    let mx = 0, my = 0, dx = 0, dy = 0, rx = 0, ry = 0, hoverPill = null;
+    const cd = document.getElementById('cd');
+    let mx = 0, my = 0, dx = 0, dy = 0, hoverPill = null;
     document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 
     function morphCursor(el) {
       const r = el.getBoundingClientRect();
-      const radius = getComputedStyle(el).borderRadius || '999px';
-      cd.style.width = Math.max(18, r.width - 6) + 'px';
-      cd.style.height = Math.max(18, r.height - 6) + 'px';
+      const isNavItem = !!el.closest('.nav-pill');
+      const radius = isNavItem ? '999px' : (getComputedStyle(el).borderRadius || '999px');
+      const insetX = isNavItem ? 4 : 6;
+      const insetY = isNavItem ? 4 : 6;
+      cd.style.width = Math.max(18, r.width - insetX) + 'px';
+      cd.style.height = Math.max(18, r.height - insetY) + 'px';
       cd.style.borderRadius = radius;
-      cr.style.opacity = '0';
     }
 
     function resetCursor() {
       cd.style.width = '12px';
       cd.style.height = '12px';
       cd.style.borderRadius = '999px';
-      cr.style.opacity = '';
     }
     
     (function cursorLoop() {
       let tx = mx, ty = my;
       if (hoverPill) { const r = hoverPill.getBoundingClientRect(); tx = r.left + r.width / 2; ty = r.top + r.height / 2; }
-      dx += (tx - dx) * .22; dy += (ty - dy) * .22;
-      cd.style.left = dx + 'px';
-      cd.style.top = dy + 'px';
-      rx += (tx - rx) * .15; ry += (ty - ry) * .15;
-      cr.style.left = rx + 'px'; cr.style.top = ry + 'px';
+      dx += (tx - dx) * .14; dy += (ty - dy) * .14;
+      cd.style.transform = `translate3d(${dx}px, ${dy}px, 0) translate3d(-50%, -50%, 0)`;
       requestAnimationFrame(cursorLoop);
     })();
 
@@ -245,6 +243,41 @@
     const scrollContainer = document.querySelector('.h-scroll-container');
     const slides = Array.from(document.querySelectorAll('main > section, main > .about'));
     let isLocked = false;
+    let scrollAnimFrame = null;
+
+    function isDesktopLayout() {
+      return window.matchMedia('(min-width: 701px)').matches;
+    }
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function animateScrollTo(left) {
+      if (!isDesktopLayout()) {
+        scrollContainer.scrollLeft = left;
+        return;
+      }
+      if (scrollAnimFrame) cancelAnimationFrame(scrollAnimFrame);
+      const start = scrollContainer.scrollLeft;
+      const distance = left - start;
+      const duration = 620;
+      const startTime = performance.now();
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeInOutCubic(progress);
+        scrollContainer.scrollLeft = start + distance * eased;
+        if (progress < 1) {
+          scrollAnimFrame = requestAnimationFrame(step);
+        } else {
+          scrollAnimFrame = null;
+        }
+      }
+
+      scrollAnimFrame = requestAnimationFrame(step);
+    }
 
     function getCurrentIndex() {
       const width = scrollContainer.clientWidth;
@@ -255,7 +288,11 @@
       const boundedIndex = Math.max(0, Math.min(slides.length - 1, targetIndex));
       const target = slides[boundedIndex];
       if (!target || target === slides[getCurrentIndex()]) return;
-      target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      if (isDesktopLayout()) {
+        animateScrollTo(target.offsetLeft);
+      } else {
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      }
     }
 
     function handleScroll(dir) {
