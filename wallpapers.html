@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Srishanth — Wallpapers</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="cur-dot" id="cd"></div>
+  <div class="cur-ring" id="cr"></div>
+
+  <nav>
+    <a class="nav-icon-btn pill" href="personal.html" style="padding: 0; border-radius: 50%; overflow: hidden;">
+      <img src="P.jpg" alt="Srishanth" class="nav-photo" />
+    </a>
+    <ul class="nav-pill">
+      <li><a href="personal.html#work">Work</a></li>
+      <li><a href="wallpapers.html" class="active">Wallpapers</a></li>
+      <li><a href="personal.html#about">About</a></li>
+      <li><a href="personal.html#contact">Contact</a></li>
+    </ul>
+
+  </nav>
+
+  <section class="work rev" id="wallpapers" style="padding-top: 8rem; min-height: 80vh;">
+    <div class="sec-label">Wallpapers</div>
+    <a class="proj" href="#">
+      <div class="proj-l"><span class="proj-n">01</span>
+        <div class="proj-info">
+          <div class="proj-name">Midnight Desktop Pack</div>
+          <div class="proj-meta">4K Resolution · $5</div>
+        </div>
+      </div>
+      <div class="proj-r"><span class="proj-yr">Buy now</span><span class="proj-arr">→</span></div>
+    </a>
+    <a class="proj" href="#">
+      <div class="proj-l"><span class="proj-n">02</span>
+        <div class="proj-info">
+          <div class="proj-name">Liquid Abstract Collection</div>
+          <div class="proj-meta">Mobile &amp; Desktop · $8</div>
+        </div>
+      </div>
+      <div class="proj-r"><span class="proj-yr">Buy now</span><span class="proj-arr">→</span></div>
+    </a>
+  </section>
+
+  <footer>
+    <p>SRI © 2026 — Made with care.</p>
+    <ul class="f-links">
+      <li><a href="https://github.com/SURAKANTISRISHANTHREDDY" target="_blank">GitHub</a></li>
+      <li><a href="https://linkedin.com/in/your-profile" target="_blank">LinkedIn</a></li>
+      <li><a href="https://instagram.com/your-handle" target="_blank">Instagram</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const cd = document.getElementById('cd'), cr = document.getElementById('cr');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    let hoverPill = null;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function loop() {
+      cd.style.left = mx + 'px'; cd.style.top = my + 'px';
+      let tx = mx, ty = my;
+      if (hoverPill) {
+        const rect = hoverPill.getBoundingClientRect();
+        tx = rect.left + rect.width / 2;
+        ty = rect.top + rect.height / 2;
+      }
+      rx += (tx - rx) * .15; ry += (ty - ry) * .15;
+      cr.style.left = rx + 'px'; cr.style.top = ry + 'px';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a, button, .pill').forEach(el => {
+      const isPill = el.classList.contains('pill') || el.classList.contains('h-pill') || el.closest('.nav-pill') || el.classList.contains('cbtn');
+      el.addEventListener('mouseenter', () => {
+        document.body.classList.add('hov');
+        if (isPill) {
+          hoverPill = el;
+          const rect = el.getBoundingClientRect();
+          cr.style.width = rect.width + 'px';
+          cr.style.height = rect.height + 'px';
+          cd.style.opacity = '0';
+        }
+      });
+      el.addEventListener('mouseleave', () => {
+        document.body.classList.remove('hov');
+        if (isPill) {
+          hoverPill = null;
+          cr.style.width = '';
+          cr.style.height = '';
+          cd.style.opacity = '1';
+        }
+      });
+    });
+    const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in'); }), { threshold: 0.07 });
+    document.querySelectorAll('.rev').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

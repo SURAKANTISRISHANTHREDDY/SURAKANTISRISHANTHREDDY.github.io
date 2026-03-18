@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Srishanth — Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- System: Cursor Elements -->
+  <div class="cur-dot" id="cd"></div>
+  <div class="cur-ring" id="cr"></div>
+
+  <!-- System: Progress Dots -->
+  <div class="slide-dots" id="slideDots"></div>
+
+  <!-- System: Secondary Navigation (Floating Pills) -->
+  <nav class="sec-nav" id="secNav" role="navigation" aria-label="Section actions" aria-live="polite"></nav>
+
+  <!-- MODIFIABLE: Primary Navigation -->
+  <nav>
+    <a class="nav-icon-btn pill" href="#home" style="padding: 0; border-radius: 50%; overflow: hidden;">
+      <!-- EDIT: Profile Image -->
+      <img src="P.jpg" alt="Srishanth" class="nav-photo" />
+    </a>
+    <ul class="nav-pill">
+      <!-- EDIT: Nav Items -->
+      <li><a href="#work" class="active">Work</a></li>
+      <li><a href="#wallpapers">Wallpapers</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="h-scroll-container">
+
+    <!-- SECTION: Hero -->
+    <section class="hero" id="home">
+      <div class="hero-left">
+        <!-- EDIT: Hero Title -->
+        <h1 class="h-title">
+          Hey, I'm SRISHANTH <br />
+          a <em>builder</em> at the edge<br />of code &amp; craft.
+        </h1>
+        <!-- EDIT: Hero Intro -->
+        <p class="h-body">
+          Student. Software developer. I make things that work beautifully
+          and look even better — currently studying at WSU and building on the side.
+        </p>
+        <div class="h-pills">
+          <!-- MODIFIABLE: Hero Social/Call-to-Action Pills -->
+          <a class="h-pill" href="https://github.com/SURAKANTISRISHANTHREDDY" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="h-pill" href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="h-pill" href="mailto:srishanthsurakanti@gmail.com">Email me</a>
+          <a class="h-pill" href="resume.pdf" download>Resume</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <!-- MODIFIABLE: Hero Status Card -->
+        <div class="hero-card">
+          <div class="hero-card-status"><span class="status-dot"></span> Available for work</div>
+          <div class="hero-card-label">Currently</div>
+          <div class="hero-card-val">Student @ WSU</div>
+          <div class="hero-card-divider"></div>
+          <div class="hero-card-label">Based in</div>
+          <div class="hero-card-val">Pullman, WA</div>
+          <div class="hero-card-divider"></div>
+          <div class="hero-card-label">Stack</div>
+          <div class="hero-card-stack">
+            <!-- EDIT: Tech Stack Chips -->
+            <span class="hero-card-tag">React</span>
+            <span class="hero-card-tag">Node.js</span>
+            <span class="hero-card-tag">Python</span>
+            <span class="hero-card-tag">Figma</span>
+            <span class="hero-card-tag">Shopify</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Work -->
+    <section class="work rev" id="work">
+      <div class="work-inner-content">
+        <div class="sec-label">Selected work</div>
+        <!-- MODIFIABLE: Project List -->
+        <!-- EDIT: Add/Remove <a class="proj"> items here -->
+        <a class="proj" href="#">
+          <div class="proj-l"><span class="proj-n">01</span>
+            <div class="proj-info">
+              <div class="proj-name">Project Alpha</div>
+              <div class="proj-meta">Web App · React · Node.js</div>
+            </div>
+          </div>
+          <div class="proj-r"><span class="proj-yr">2024</span><span class="proj-arr">→</span></div>
+        </a>
+        <!-- ... additional projects ... -->
+      </div>
+    </section>
+
+    <!-- SECTION: Wallpapers -->
+    <section class="work rev" id="wallpapers">
+      <div class="work-inner-content">
+        <div class="sec-label">Wallpapers</div>
+        <!-- MODIFIABLE: Wallpaper Items -->
+        <a class="proj" href="#">
+          <div class="proj-l"><span class="proj-n">01</span>
+            <div class="proj-info">
+              <div class="proj-name">Midnight Desktop Pack</div>
+              <div class="proj-meta">4K Resolution · $5</div>
+            </div>
+          </div>
+          <div class="proj-r"><span class="proj-yr">Buy now</span><span class="proj-arr">→</span></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION: About -->
+    <div class="about rev" id="about">
+      <div class="about-in">
+        <div class="about-hed">Building at the<br />edge of <em>code</em><br />&amp; <em>craft.</em></div>
+        <div class="about-copy">
+          <!-- EDIT: About Text -->
+          <p>I'm a senior student studying Computer Science who believes the best work happens when technical precision meets genuine aesthetic care.</p>
+          <div class="pills">
+            <!-- EDIT: Skill Tags -->
+            <span class="pill">React</span><span class="pill">Node.js</span><span class="pill">Python</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: Contact -->
+    <section class="contact rev" id="contact">
+      <div class="contact-inner">
+        <div>
+          <h2 class="contact-hed">Let's make<br /><em>something</em><br />together.</h2>
+          <p class="contact-sub">Open to freelance and collabs. I read every message.</p>
+        </div>
+        <!-- MODIFIABLE: Contact Form -->
+        <form class="cform" id="contactForm">
+          <div class="cfield"><label>Name</label><input type="text" id="contactName" placeholder="Your name" required /></div>
+          <div class="cfield"><label>Email</label><input type="email" id="contactEmail" placeholder="your@email.com" required /></div>
+          <div class="cfield"><label>Message</label><textarea id="contactMessage" placeholder="Tell me about your project…" required></textarea></div>
+          <button class="cbtn" type="submit">Send it →</button>
+        </form>
+      </div>
+      <!-- FOOTER -->
+      <footer class="slide-footer">
+        <p>SRI © 2026 — Made with care.</p>
+        <ul class="f-links">
+          <!-- EDIT: Footer Links -->
+          <li><a href="https://github.com/SURAKANTISRISHANTHREDDY" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    /**
+     * CORE LOGIC: Do not edit below unless modifying functionality.
+     * All content/configuration is in the HTML sections above or the SEC_NAV_DATA below.
+     */
+    
+    // ── CONFIGURATION: SECONDARY NAVIGATION ───────────────────────────
+    // MODIFIABLE: Update the action pills that appear for each section.
+    const SEC_NAV_DATA = {
+      home: {
+        links: [
+          { text: 'GitHub', href: 'https://github.com/SURAKANTISRISHANTHREDDY', target: '_blank', icon: '🔗 ' },
+          { text: 'LinkedIn', href: 'https://linkedin.com/in/your-profile', target: '_blank', icon: '💼 ' },
+          { text: 'Email', href: 'mailto:srishanthsurakanti@gmail.com', icon: '✉️ ' },
+        ]
+      },
+      work: {
+        links: [
+          { text: 'View GitHub', href: 'https://github.com/SURAKANTISRISHANTHREDDY', target: '_blank', icon: '📂 ' }
+        ]
+      },
+      wallpapers: {
+        links: [
+          { text: 'Gumroad', href: '#', icon: '✨ ' },
+          { text: 'Instagram', href: 'https://instagram.com/your-handle', target: '_blank', icon: '📸 ' },
+        ]
+      },
+      about: {
+        links: [
+          { text: 'Resume', href: 'resume.pdf', download: true, icon: '📄 ' }
+        ]
+      },
+      contact: {
+        links: [
+          { text: 'Direct Email', href: 'mailto:srishanthsurakanti@gmail.com', icon: '✉️ ' }
+        ]
+      },
+    };
+
+    // ── SYSTEM: CORE FUNCTIONALITY ─────────────────────────────────────
+    
+    // 1. Cursor Handling
+    const cd = document.getElementById('cd'), cr = document.getElementById('cr');
+    let mx = 0, my = 0, rx = 0, ry = 0, hoverPill = null;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    
+    (function cursorLoop() {
+      cd.style.left = mx + 'px'; cd.style.top = my + 'px';
+      let tx = mx, ty = my;
+      if (hoverPill) { const r = hoverPill.getBoundingClientRect(); tx = r.left + r.width / 2; ty = r.top + r.height / 2; }
+      rx += (tx - rx) * .15; ry += (ty - ry) * .15;
+      cr.style.left = rx + 'px'; cr.style.top = ry + 'px';
+      requestAnimationFrame(cursorLoop);
+    })();
+
+    function watchHover(elements) {
+      elements.forEach(el => {
+        const isPill = el.classList.contains('pill') || el.classList.contains('h-pill') || el.closest('.nav-pill') || el.classList.contains('cbtn') || el.classList.contains('sec-nav-link');
+        el.addEventListener('mouseenter', () => {
+          document.body.classList.add('hov');
+          if (isPill) { hoverPill = el; const r = el.getBoundingClientRect(); cr.style.width = r.width + 'px'; cr.style.height = r.height + 'px'; cd.style.opacity = '0'; }
+        });
+        el.addEventListener('mouseleave', () => {
+          document.body.classList.remove('hov');
+          if (isPill) { hoverPill = null; cr.style.width = ''; cr.style.height = ''; cd.style.opacity = '1'; }
+        });
+      });
+    }
+    watchHover(document.querySelectorAll('a, button, .pill'));
+
+    // 2. Scroll & Snap Logic
+    const scrollContainer = document.querySelector('.h-scroll-container');
+    const slides = Array.from(document.querySelectorAll('main > section, main > .about'));
+    let isLocked = false;
+
+    function handleScroll(dir) {
+      if (isLocked) return;
+      isLocked = true;
+      const index = Math.round(scrollContainer.scrollLeft / scrollContainer.clientWidth) + dir;
+      const target = slides[Math.max(0, Math.min(slides.length - 1, index))];
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      setTimeout(() => { isLocked = false; }, 750);
+    }
+
+    scrollContainer.addEventListener('wheel', e => {
+      e.preventDefault();
+      const dir = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      handleScroll(dir > 0 ? 1 : -1);
+    }, { passive: false });
+
+    // 3. Navigation & Section Intersection
+    const navPill = document.querySelector('.nav-pill');
+    const dotsContainer = document.getElementById('slideDots');
+    const secNav = document.getElementById('secNav');
+    let activeSec = null;
+
+    function updateSecNav(id) {
+      if (activeSec === id) return;
+      activeSec = id;
+      secNav.innerHTML = '';
+      const data = SEC_NAV_DATA[id];
+      if (!data) { secNav.classList.remove('visible'); return; }
+      
+      data.links.forEach(item => {
+        const a = document.createElement('a');
+        a.className = 'sec-nav-link';
+        a.href = item.href;
+        if (item.target) a.target = item.target;
+        if (item.download) a.setAttribute('download', '');
+        a.innerHTML = item.icon + item.text;
+        secNav.appendChild(a);
+      });
+      watchHover(secNav.querySelectorAll('.sec-nav-link'));
+      secNav.classList.add('visible');
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = slides.indexOf(entry.target);
+          // Highlight Nav
+          document.querySelectorAll('.nav-pill a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
+          // Highlight Dots
+          document.querySelectorAll('.slide-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+          // Update Secondary Nav
+          updateSecNav(entry.target.id);
+          // Handle Indicator Slide
+          const active = document.querySelector('.nav-pill a.active');
+          if (active) {
+            const r = active.getBoundingClientRect(), p = navPill.getBoundingClientRect();
+            navPill.style.setProperty('--active-left', (r.left - p.left) + 'px');
+            navPill.style.setProperty('--active-width', r.width + 'px');
+            navPill.classList.add('has-active');
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+
+    slides.forEach((s, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => s.scrollIntoView({ behavior: 'smooth' });
+      dotsContainer.appendChild(dot);
+      if (s.id) observer.observe(s);
+    });
+
+    // 4. Contact Form Handling
+    const form = document.getElementById('contactForm');
+    form.onsubmit = (e) => {
+      e.preventDefault();
+      const n = document.getElementById('contactName').value, em = document.getElementById('contactEmail').value, msg = document.getElementById('contactMessage').value;
+      window.location.href = `mailto:srishanthsurakanti@gmail.com?subject=New Message from ${n}&body=${encodeURIComponent(msg + '\n\nFrom: ' + em)}`;
+    };
+
+    // Keyboard Accessibility
+    document.onkeydown = (e) => { if (e.key === 'Escape') secNav.classList.remove('visible'); };
+  </script>
+</body>
+
+</html>

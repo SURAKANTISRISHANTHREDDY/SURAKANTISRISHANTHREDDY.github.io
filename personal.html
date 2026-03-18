@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Srishanth — Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
+    rel="stylesheet" />
+  <!-- Stylesheet — edit style.css to change all visual styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="cur-dot" id="cd"></div>
+  <div class="cur-ring" id="cr"></div>
+
+  <!-- Slide progress dots -->
+  <div class="slide-dots" id="slideDots"></div>
+
+  <!-- Secondary floating nav pill (context-specific links per section) -->
+  <nav class="sec-nav" id="secNav" role="navigation" aria-label="Section actions" aria-live="polite"></nav>
+
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-icon-btn pill" href="#home" style="padding: 0; border-radius: 50%; overflow: hidden;">
+      <img src="P.jpg" alt="Srishanth" class="nav-photo" />
+    </a>
+    <ul class="nav-pill">
+      <li><a href="#work" class="active">Work</a></li>
+      <li><a href="#wallpapers">Wallpapers</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+  </nav>
+
+  <main class="h-scroll-container">
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-left">
+        <h1 class="h-title">
+          Hey, I'm SRISHANTH <br />
+          a <em>builder</em> at the edge<br />of code &amp; craft.
+        </h1>
+        <p class="h-body">
+          Student. Software developer. I make things that work beautifully
+          and look even better — currently studying at WSU and building on the side.
+        </p>
+        <div class="h-pills">
+          <a class="h-pill" href="https://github.com/SURAKANTISRISHANTHREDDY" target="_blank" rel="noopener noreferrer">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.8 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.7 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.5-2.8 5.5-5.5 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3" />
+            </svg>
+            GitHub
+          </a>
+          <a class="h-pill" href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.55V9H7.11v11.45z" />
+            </svg>
+            LinkedIn
+          </a>
+          <a class="h-pill" href="mailto:srishanthsurakanti@gmail.com">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m2 7 10 7 10-7" />
+            </svg>
+            Email me
+          </a>
+          <a class="h-pill" href="resume.pdf" download>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path
+                d="M12 15V3m0 12-4-4m4 4 4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17" />
+            </svg>
+            Resume
+          </a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card">
+          <div class="hero-card-status">
+            <span class="status-dot"></span>
+            Available for work
+          </div>
+          <div class="hero-card-label">Currently</div>
+          <div class="hero-card-val">Student @ WSU</div>
+          <div class="hero-card-divider"></div>
+          <div class="hero-card-label">Based in</div>
+          <div class="hero-card-val">Pullman, WA</div>
+          <div class="hero-card-divider"></div>
+          <div class="hero-card-label">Stack</div>
+          <div class="hero-card-stack">
+            <span class="hero-card-tag">React</span>
+            <span class="hero-card-tag">Node.js</span>
+            <span class="hero-card-tag">Python</span>
+            <span class="hero-card-tag">Figma</span>
+            <span class="hero-card-tag">Shopify</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="work rev" id="work">
+      <div class="work-inner-content">
+        <div class="sec-label">Selected work</div>
+        <a class="proj" href="#">
+          <div class="proj-l"><span class="proj-n">01</span>
+            <div class="proj-info">
+              <div class="proj-name">Project Alpha</div>
+              <div class="proj-meta">Web App · React · Node.js · MongoDB</div>
+            </div>
+          </div>
+          <div class="proj-r"><span class="proj-yr">2024</span><span class="proj-arr">→</span></div>
+        </a>
+        <a class="proj" href="#">
+          <div class="proj-l"><span class="proj-n">02</span>
+            <div class="proj-info">
+              <div class="proj-name">Studio Brand</div>
+              <div class="proj-meta">Merch · Brand Identity · Screen Print</div>
+            </div>
+          </div>
+          <div class="proj-r"><span class="proj-yr">2024</span><span class="proj-arr">→</span></div>
+        </a>
+        <a class="proj" href="#">
+          <div class="proj-l"><span class="proj-n">03</span>
+            <div class="proj-info">
+              <div class="proj-name">Drop Shop</div>
+              <div class="proj-meta">E-commerce · Shopify · Product Design</div>
+            </div>
+          </div>
+          <div class="proj-r"><span class="proj-yr">2023</span><span class="proj-arr">→</span></div>
+        </a>
+        <a class="proj" href="#">
+          <div class="proj-l"><span class="proj-n">04</span>
+            <div class="proj-info">
+              <div class="proj-name">Dev Tool</div>
+              <div class="proj-meta">Python · CLI · Open Source</div>
+            </div>
+          </div>
+          <div class="proj-r"><span class="proj-yr">2023</span><span class="proj-arr">→</span></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- WALLPAPERS -->
+    <section class="work rev" id="wallpapers">
+      <div class="work-inner-content">
+        <div class="sec-label">Wallpapers</div>
+        <a class="proj" href="#">
+          <div class="proj-l"><span class="proj-n">01</span>
+            <div class="proj-info">
+              <div class="proj-name">Midnight Desktop Pack</div>
+              <div class="proj-meta">4K Resolution · $5</div>
+            </div>
+          </div>
+          <div class="proj-r"><span class="proj-yr">Buy now</span><span class="proj-arr">→</span></div>
+        </a>
+        <a class="proj" href="#">
+          <div class="proj-l"><span class="proj-n">02</span>
+            <div class="proj-info">
+              <div class="proj-name">Liquid Abstract Collection</div>
+              <div class="proj-meta">Mobile &amp; Desktop · $8</div>
+            </div>
+          </div>
+          <div class="proj-r"><span class="proj-yr">Buy now</span><span class="proj-arr">→</span></div>
+        </a>
+      </div>
+    </section>
+
+
+
+    <!-- ABOUT -->
+    <div class="about rev" id="about">
+      <div class="about-in">
+        <div class="about-hed">Building at the<br />edge of <em>code</em><br />&amp; <em>craft.</em></div>
+        <div class="about-copy">
+          <p>I'm a senior student studying Computer Science who believes the best work happens when technical precision
+            meets genuine aesthetic care. I write software. I design brands. I make merch people actually want.</p>
+          <p>Whether it's shipping a clean API or sourcing the right blank tee for a drop, I bring the same obsessive
+            attention to detail — and I'm always looking for the next thing worth building.</p>
+          <div class="pills">
+            <span class="pill">React</span><span class="pill">Node.js</span><span class="pill">Python</span>
+            <span class="pill">TypeScript</span><span class="pill">Figma</span><span class="pill">Shopify</span>
+            <span class="pill">Brand Design</span><span class="pill">Print / Merch</span><span
+              class="pill">E-commerce</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <section class="contact rev" id="contact">
+      <div class="contact-inner">
+        <div>
+          <h2 class="contact-hed">Let's make<br /><em>something</em><br />together.</h2>
+          <p class="contact-sub">Open to freelance, collabs, and interesting ideas. I read every message.</p>
+        </div>
+        <form class="cform" id="contactForm">
+          <div class="cfield"><label>Name</label><input type="text" id="contactName" placeholder="Your name" required />
+          </div>
+          <div class="cfield"><label>Email</label><input type="email" id="contactEmail" placeholder="your@email.com"
+              required /></div>
+          <div class="cfield"><label>Message</label><textarea id="contactMessage"
+              placeholder="Tell me about your project…" required></textarea>
+          </div>
+          <button class="cbtn" type="submit">Send it →</button>
+        </form>
+      </div>
+      <!-- FOOTER -->
+      <footer class="slide-footer">
+        <p>SRI © 2026 — Made with care.</p>
+        <ul class="f-links">
+          <li><a href="https://github.com/SURAKANTISRISHANTHREDDY" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="https://instagram.com/your-handle" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        </ul>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    // ── Cursor ──────────────────────────────────────────────────────────
+    const cd = document.getElementById('cd'), cr = document.getElementById('cr');
+    let mx = 0, my = 0, rx = 0, ry = 0, hoverPill = null;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function loop() {
+      cd.style.left = mx + 'px'; cd.style.top = my + 'px';
+      let tx = mx, ty = my;
+      if (hoverPill) { const r = hoverPill.getBoundingClientRect(); tx = r.left + r.width / 2; ty = r.top + r.height / 2; }
+      rx += (tx - rx) * .15; ry += (ty - ry) * .15;
+      cr.style.left = rx + 'px'; cr.style.top = ry + 'px';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a, button, .pill').forEach(el => {
+      const isPill = el.classList.contains('pill') || el.classList.contains('h-pill') || el.closest('.nav-pill') || el.classList.contains('cbtn');
+      el.addEventListener('mouseenter', () => {
+        document.body.classList.add('hov');
+        if (isPill) { hoverPill = el; const r = el.getBoundingClientRect(); cr.style.width = r.width + 'px'; cr.style.height = r.height + 'px'; cd.style.opacity = '0'; }
+      });
+      el.addEventListener('mouseleave', () => {
+        document.body.classList.remove('hov');
+        if (isPill) { hoverPill = null; cr.style.width = ''; cr.style.height = ''; cd.style.opacity = '1'; }
+      });
+    });
+
+    // ── Scroll reveal ────────────────────────────────────────────────────
+    const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in'); }), { threshold: 0.07 });
+    document.querySelectorAll('.rev').forEach(el => obs.observe(el));
+
+    // ── Horizontal scroll ────────────────────────────────────────────────
+    const scrollContainer = document.querySelector('.h-scroll-container');
+    const slides = Array.from(document.querySelectorAll('main > section, main > .about'));
+    let isScrollLocked = false;
+    let scrollLockTimer = null;
+
+    function getCurrentIndex() {
+      const w = scrollContainer.clientWidth;
+      return Math.round(scrollContainer.scrollLeft / w);
+    }
+
+    function goToSlide(index) {
+      const target = slides[Math.max(0, Math.min(slides.length - 1, index))];
+      if (!target) return;
+      target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    }
+
+    function handleScroll(direction) {
+      if (isScrollLocked) return;
+      isScrollLocked = true;
+      goToSlide(getCurrentIndex() + direction);
+      clearTimeout(scrollLockTimer);
+      scrollLockTimer = setTimeout(() => { isScrollLocked = false; }, 750);
+    }
+
+    // Mouse wheel / trackpad
+    scrollContainer.addEventListener('wheel', evt => {
+      const isVertical = Math.abs(evt.deltaY) > Math.abs(evt.deltaX);
+      const isHorizontal = Math.abs(evt.deltaX) > Math.abs(evt.deltaY);
+
+      if (isVertical) {
+        evt.preventDefault();
+        handleScroll(evt.deltaY > 0 ? 1 : -1);
+      } else if (isHorizontal) {
+        evt.preventDefault();
+        handleScroll(evt.deltaX > 0 ? 1 : -1);
+      }
+    }, { passive: false });
+
+    // Touch swipe
+    let touchStartX = 0;
+    let touchStartY = 0;
+    scrollContainer.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    scrollContainer.addEventListener('touchend', e => {
+      const dx = touchStartX - e.changedTouches[0].clientX;
+      const dy = touchStartY - e.changedTouches[0].clientY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+        handleScroll(dx > 0 ? 1 : -1);
+      }
+    }, { passive: true });
+
+    // ── Slide dots ───────────────────────────────────────────────────────
+    const dotsContainer = document.getElementById('slideDots');
+    const slideLabels = ['Home', 'Work', 'Wallpapers', 'About', 'Contact'];
+    slides.forEach((slide, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+      dot.title = slideLabels[i] || '';
+      dot.addEventListener('click', () => slide.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' }));
+      dotsContainer.appendChild(dot);
+    });
+
+    // ── Slide transition + dot update ────────────────────────────────────
+    const slideObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const idx = slides.indexOf(entry.target);
+        if (entry.isIntersecting && idx !== -1) {
+          entry.target.classList.add('slide-enter');
+          setTimeout(() => entry.target.classList.remove('slide-enter'), 600);
+          document.querySelectorAll('.slide-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+      });
+    }, { root: scrollContainer, threshold: 0.55 });
+    slides.forEach(s => slideObserver.observe(s));
+
+    // ── Nav active highlight ──────────────────────────────────────────────
+    const navLinks = document.querySelectorAll('.nav-pill a');
+    const navPillContainer = document.querySelector('.nav-pill');
+    function updateSlidingBackground() {
+      const activeLink = document.querySelector('.nav-pill a.active');
+      if (activeLink) {
+        navPillContainer.classList.add('has-active');
+        const lr = activeLink.getBoundingClientRect(), cr2 = navPillContainer.getBoundingClientRect();
+        navPillContainer.style.setProperty('--active-left', (lr.left - cr2.left) + 'px');
+        navPillContainer.style.setProperty('--active-width', lr.width + 'px');
+      } else { navPillContainer.classList.remove('has-active'); }
+    }
+    const navObserver = new IntersectionObserver(entries => {
+      let changed = false;
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href') === '#' + entry.target.id) { link.classList.add('active'); changed = true; } });
+        }
+      });
+      if (changed) updateSlidingBackground();
+    }, { root: scrollContainer, threshold: 0.5 });
+    slides.forEach(s => { if (s.id) navObserver.observe(s); });
+    window.addEventListener('resize', updateSlidingBackground);
+    setTimeout(updateSlidingBackground, 50);
+
+    // ── Form Handling ──────────────────────────────────────────────────
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('contactName').value;
+        const email = document.getElementById('contactEmail').value;
+        const message = document.getElementById('contactMessage').value;
+
+        const subject = `New message from ${name}`;
+        const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+
+        window.location.href = `mailto:srishanthsurakanti@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      });
+    }
+
+    // ── Secondary Nav ─────────────────────────────────────────────────
+    // Data model: map each section id → label + array of action links
+    const SEC_NAV_DATA = {
+      home: {
+        label: 'Find me on',
+        links: [
+          { text: 'GitHub',   href: 'https://github.com/SURAKANTISRISHANTHREDDY', target: '_blank',
+            icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.8 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.7 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.5-2.8 5.5-5.5 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>` },
+          { text: 'LinkedIn', href: 'https://linkedin.com/in/your-profile', target: '_blank',
+            icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.55V9H7.11v11.45z"/></svg>` },
+          { text: 'Email',    href: 'mailto:srishanthsurakanti@gmail.com',
+            icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>` },
+        ]
+      },
+      work: {
+        label: 'Projects on',
+        links: [
+          { text: 'GitHub', href: 'https://github.com/SURAKANTISRISHANTHREDDY', target: '_blank',
+            icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.8 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.7 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.5-2.8 5.5-5.5 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>` },
+        ]
+      },
+      wallpapers: {
+        label: 'Buy on',
+        links: [
+          { text: 'Gumroad',   href: '#', icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 8v8m-4-4h8" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="2"/></svg>` },
+          { text: 'Instagram', href: 'https://instagram.com/your-handle', target: '_blank',
+            icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>` },
+        ]
+      },
+      about: {
+        label: 'Download',
+        links: [
+          { text: 'Resume', href: 'resume.pdf', download: true,
+            icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 15V3m0 12-4-4m4 4 4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"/></svg>` },
+          { text: 'LinkedIn', href: 'https://linkedin.com/in/your-profile', target: '_blank',
+            icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.55V9H7.11v11.45z"/></svg>` },
+        ]
+      },
+      contact: {
+        label: 'Reach out via',
+        links: [
+          { text: 'Email',     href: 'mailto:srishanthsurakanti@gmail.com',
+            icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>` },
+          { text: 'GitHub',    href: 'https://github.com/SURAKANTISRISHANTHREDDY', target: '_blank',
+            icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.8 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.7 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.5-2.8 5.5-5.5 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>` },
+          { text: 'LinkedIn',  href: 'https://linkedin.com/in/your-profile', target: '_blank',
+            icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.55V9H7.11v11.45z"/></svg>` },
+          { text: 'Instagram', href: 'https://instagram.com/your-handle', target: '_blank',
+            icon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>` },
+        ]
+      },
+    };
+
+    const secNav = document.getElementById('secNav');
+    let currentSecSection = null;
+
+    function buildSecNav(sectionId) {
+      const data = SEC_NAV_DATA[sectionId];
+      secNav.innerHTML = '';
+      if (!data) return;
+
+      // Label
+      if (data.label) {
+        const lbl = document.createElement('span');
+        lbl.className = 'sec-nav-label';
+        lbl.setAttribute('aria-hidden', 'true');
+        lbl.textContent = data.label;
+        secNav.appendChild(lbl);
+      }
+
+      // Links with separators
+      data.links.forEach((item, i) => {
+        const a = document.createElement('a');
+        a.className = 'sec-nav-link';
+        a.href = item.href;
+        if (item.target) a.target = item.target;
+        if (item.download) a.setAttribute('download', '');
+        a.setAttribute('tabindex', '0');
+        a.innerHTML = item.icon + item.text;
+
+        // Register with cursor system
+        a.addEventListener('mouseenter', () => {
+          document.body.classList.add('hov');
+          hoverPill = a;
+          const r = a.getBoundingClientRect();
+          cr.style.width = r.width + 'px'; cr.style.height = r.height + 'px';
+          cd.style.opacity = '0';
+        });
+        a.addEventListener('mouseleave', () => {
+          document.body.classList.remove('hov');
+          hoverPill = null;
+          cr.style.width = ''; cr.style.height = '';
+          cd.style.opacity = '1';
+        });
+
+        secNav.appendChild(a);
+
+        if (i < data.links.length - 1) {
+          const sep = document.createElement('span');
+          sep.className = 'sec-nav-sep';
+          sep.setAttribute('aria-hidden', 'true');
+          secNav.appendChild(sep);
+        }
+      });
+    }
+
+    function showSecNav(sectionId) {
+      if (currentSecSection === sectionId) return;
+      currentSecSection = sectionId;
+      buildSecNav(sectionId);
+      // Tiny delay so the DOM paints before animating in
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        secNav.classList.toggle('visible', !!SEC_NAV_DATA[sectionId]);
+      }));
+    }
+
+    // Keyboard: Escape dismisses secondary nav
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        secNav.classList.remove('visible');
+        currentSecSection = null;
+      }
+      // Arrow keys navigate between sec-nav links when focused inside
+      if ((e.key === 'ArrowRight' || e.key === 'ArrowLeft') && secNav.contains(document.activeElement)) {
+        const links = Array.from(secNav.querySelectorAll('.sec-nav-link'));
+        const idx = links.indexOf(document.activeElement);
+        if (idx !== -1) {
+          const next = e.key === 'ArrowRight' ? (idx + 1) % links.length : (idx - 1 + links.length) % links.length;
+          links[next].focus();
+          e.preventDefault();
+        }
+      }
+    });
+
+    // Hook into existing scrollObserver: update sec nav whenever active section changes
+    // We piggyback on the navObserver entries
+    const secNavObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.target.id) {
+          showSecNav(entry.target.id);
+        }
+      });
+    }, { root: scrollContainer, threshold: 0.5 });
+    slides.forEach(s => { if (s.id) secNavObserver.observe(s); });
+  </script>
+
+</body>
+
+</html>
