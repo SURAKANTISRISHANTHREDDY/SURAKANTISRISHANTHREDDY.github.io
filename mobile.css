@@ -43,6 +43,7 @@
         padding: 0.4rem 0.45rem;
         justify-content: flex-start;
         background: var(--bg);
+        backdrop-filter: none;
         border: 1px solid rgba(0, 0, 0, 0.18);
         box-shadow: none;
         overflow-x: auto;
@@ -102,6 +103,13 @@
         font-size: 0.78rem;
         background: var(--bg);
         border-color: rgba(0, 0, 0, 0.18);
+        box-shadow: none;
+        transition: color 0.2s ease;
+    }
+
+    .sec-nav-link:hover,
+    .sec-nav-link:active {
+        background: var(--bg);
         box-shadow: none;
     }
 
