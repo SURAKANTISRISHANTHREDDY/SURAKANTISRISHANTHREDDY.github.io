@@ -43,7 +43,7 @@
         padding: 0.4rem 0.45rem;
         justify-content: flex-start;
         background: #ebe7df;
-        border: 1px solid rgba(26, 24, 20, 0.12);
+        border: 1px solid rgba(0, 0, 0, 0.18);
         box-shadow: 0 12px 28px rgba(26, 24, 20, 0.12), 0 2px 8px rgba(26, 24, 20, 0.08);
         overflow-x: auto;
         overflow-y: hidden;
@@ -101,7 +101,7 @@
         padding: 0.46rem 0.92rem;
         font-size: 0.78rem;
         background: #ebe7df;
-        border-color: rgba(26, 24, 20, 0.12);
+        border-color: rgba(0, 0, 0, 0.18);
         box-shadow: 0 12px 28px rgba(26, 24, 20, 0.12), 0 2px 8px rgba(26, 24, 20, 0.08);
     }
 
