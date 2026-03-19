@@ -184,15 +184,15 @@
     }
 
     .h-title {
-        max-width: 7ch;
-        font-size: clamp(2.15rem, 11.2vw, 3.45rem);
+        max-width: 10.5ch;
+        font-size: clamp(2.2rem, 11vw, 3.35rem);
         line-height: 0.9;
         letter-spacing: -0.04em;
         margin-bottom: 0.4rem;
     }
 
     .h-title br {
-        display: block;
+        display: none;
     }
 
     .h-body {
