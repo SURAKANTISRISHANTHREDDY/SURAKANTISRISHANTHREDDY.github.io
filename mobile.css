@@ -184,28 +184,29 @@
     }
 
     .h-title {
-        max-width: 100%;
-        font-size: clamp(2.35rem, 12.2vw, 3.9rem);
-        line-height: 0.92;
+        max-width: 7ch;
+        font-size: clamp(2.15rem, 11.2vw, 3.45rem);
+        line-height: 0.9;
         letter-spacing: -0.04em;
-        margin-bottom: 0.55rem;
+        margin-bottom: 0.4rem;
     }
 
     .h-title br {
-        display: none;
+        display: block;
     }
 
     .h-body {
-        max-width: 100%;
-        font-size: 0.88rem;
-        line-height: 1.55;
-        margin-bottom: 0.6rem;
+        max-width: 23ch;
+        font-size: 0.84rem;
+        line-height: 1.48;
+        margin-bottom: 0.45rem;
     }
 
     .hero-card {
         width: 100%;
         padding: 1.05rem;
         border-radius: 20px;
+        margin-top: 0.15rem;
     }
 
     .hero-card-status {
