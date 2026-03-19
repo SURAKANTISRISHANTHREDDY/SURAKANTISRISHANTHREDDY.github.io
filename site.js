@@ -420,7 +420,18 @@
         event.preventDefault();
         const target = document.getElementById(href.slice(1));
         const targetIndex = slides.indexOf(target);
-        if (targetIndex !== -1) goToSlide(targetIndex);
+        if (targetIndex !== -1) {
+          goToSlide(targetIndex);
+          return;
+        }
+
+        if (!target) return;
+
+        if (isDesktopLayout()) {
+          animateScrollTo(target.offsetLeft);
+        } else {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     });
 
